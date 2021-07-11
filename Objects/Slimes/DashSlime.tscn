@@ -1,0 +1,235 @@
+[gd_scene load_steps=45 format=2]
+
+[ext_resource path="res://Assets/Art/DashSlime-test.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Slimes/DashSlime.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Audios/DeadSlime.wav" type="AudioStream" id=3]
+[ext_resource path="res://HUD/Stat.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Art/DashSlimeDeath.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Audios/SlimeHit.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Audios/MergeSlime.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Art/StunnedStar-sheet.png" type="Texture" id=8]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 39 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 336, 0, 48, 39 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 48, 39 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 48, 39 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 48, 39 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 48, 39 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 48, 39 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 48, 39 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 124, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 248, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 372, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 496, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 620, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 744, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 868, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 5 )
+region = Rect2( 992, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 5 )
+region = Rect2( 1116, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 5 )
+region = Rect2( 1240, 0, 124, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 5 )
+region = Rect2( 1364, 0, 124, 64 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": false,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": false,
+"name": "Dash",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "ReadyDash",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": false,
+"name": "Death",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 8 )
+region = Rect2( 35, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 8 )
+region = Rect2( 70, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 8 )
+region = Rect2( 105, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 8 )
+region = Rect2( 140, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 8 )
+region = Rect2( 175, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 8 )
+region = Rect2( 210, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 8 )
+region = Rect2( 245, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 8 )
+region = Rect2( 280, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 8 )
+region = Rect2( 315, 0, 35, 21 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 8 )
+region = Rect2( 350, 0, 35, 21 )
+
+[sub_resource type="SpriteFrames" id=31]
+animations = [ {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"loop": true,
+"name": "default",
+"speed": 11.0
+} ]
+
+[sub_resource type="CircleShape2D" id=32]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id=33]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id=34]
+radius = 20.0
+
+[node name="DashSlime" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2147483648
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 21 )
+animation = "Idle"
+playing = true
+
+[node name="StunnedSprite" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 0, -32 )
+frames = SubResource( 31 )
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 4, 4 )
+shape = SubResource( 32 )
+
+[node name="BulletDetector" type="Area2D" parent="."]
+visible = false
+monitorable = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletDetector"]
+shape = SubResource( 33 )
+
+[node name="SlimeDetector" type="Area2D" parent="."]
+visible = false
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeDetector"]
+position = Vector2( 4, 0 )
+rotation = 1.5708
+shape = SubResource( 34 )
+
+[node name="DashTimer" type="Timer" parent="."]
+
+[node name="Stat" parent="." instance=ExtResource( 4 )]
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+bus = "SFX"
+
+[node name="DeadSlime" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
+
+[node name="MergeSlime" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+bus = "SFX"
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="BulletDetector" to="." method="_on_BulletDetector_body_entered"]
+[connection signal="body_entered" from="SlimeDetector" to="." method="_on_SlimeDetector_body_entered"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]

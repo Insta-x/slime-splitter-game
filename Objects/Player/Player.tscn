@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Objects/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Art/Player.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Audios/Gun_shot.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audios/Laser_shoot.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 16 )
+
+[node name="Player" type="KinematicBody2D"]
+z_index = 11
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="icon" type="Sprite" parent="."]
+position = Vector2( 8, 0 )
+texture = ExtResource( 2 )
+
+[node name="SlimeDetector" type="Area2D" parent="."]
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeDetector"]
+shape = SubResource( 2 )
+
+[node name="SlimeLootDetector" type="Area2D" parent="."]
+monitorable = false
+collision_layer = 2147483648
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeLootDetector"]
+shape = SubResource( 3 )
+
+[node name="GunCD" type="Timer" parent="."]
+
+[node name="SplitCD" type="Timer" parent="."]
+
+[node name="DashCD" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="DashStop" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="GunShot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -6.0
+bus = "SFX"
+
+[node name="SplitterShot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -6.0
+bus = "SFX"
+[connection signal="body_entered" from="SlimeDetector" to="." method="_on_SlimeDetector_body_entered"]
+[connection signal="area_entered" from="SlimeLootDetector" to="." method="_on_SlimeLootDetector_area_entered"]
+[connection signal="timeout" from="GunCD" to="." method="_on_GunCD_timeout"]
+[connection signal="timeout" from="SplitCD" to="." method="_on_SplitCD_timeout"]
+[connection signal="timeout" from="DashCD" to="." method="_on_DashCD_timeout"]
+[connection signal="timeout" from="DashStop" to="." method="_on_DashStop_timeout"]

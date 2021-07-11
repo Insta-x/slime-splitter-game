@@ -1,0 +1,15 @@
+# Import cache
+.import/
+icon.png.import
+
+# Export presets
+export_presets.cfg
+
+# Binaries
+bin/
+build/
+lib/
+
+# GitAPI
+git_api.gdnlib
+git_api.gdns

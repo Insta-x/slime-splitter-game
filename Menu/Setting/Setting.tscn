@@ -1,0 +1,246 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Assets/Fonts/gomarice_gogono_cocoa_mochi.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Menu/Setting/KeybindContainer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Menu/Close_Button.png" type="Texture" id=3]
+[ext_resource path="res://Menu/Setting/AudioSlider.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Menu/Music_11.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Menu/Close_Button_hovered.png" type="Texture" id=9]
+[ext_resource path="res://Menu/Setting/Setting.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Art/GunBullet.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Menu/hscroll.png" type="Texture" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 9, 8 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 9, 8 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 200, 12 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 9, 8 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 38
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 9, 8 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 9, 8 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 200, 12 )
+
+[sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 9, 8 )
+
+[node name="Setting" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.10352e-05
+margin_right = -6.10352e-05
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 30
+custom_constants/margin_top = 60
+custom_constants/margin_left = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 30.0
+margin_top = 60.0
+margin_right = 1250.0
+margin_bottom = 720.0
+custom_constants/separation = 30
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 1220.0
+margin_bottom = 41.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.921569, 1, 0, 1 )
+text = "Settings"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 71.0
+margin_right = 1220.0
+margin_bottom = 578.0
+
+[node name="ControlsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 608.0
+margin_bottom = 507.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ControlsContainer"]
+margin_right = 608.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.266667, 1, 0, 1 )
+text = "Controls"
+align = 1
+valign = 1
+
+[node name="KeybindContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ControlsContainer" instance=ExtResource( 2 )]
+margin_top = 35.0
+margin_right = 608.0
+margin_bottom = 99.0
+action_name = "move_up"
+label_name = "Move Up"
+
+[node name="KeybindContainer2" parent="MarginContainer/VBoxContainer/HBoxContainer/ControlsContainer" instance=ExtResource( 2 )]
+margin_top = 103.0
+margin_right = 608.0
+margin_bottom = 167.0
+action_name = "move_down"
+label_name = "Move Down"
+
+[node name="KeybindContainer3" parent="MarginContainer/VBoxContainer/HBoxContainer/ControlsContainer" instance=ExtResource( 2 )]
+margin_top = 171.0
+margin_right = 608.0
+margin_bottom = 235.0
+action_name = "move_left"
+label_name = "Move Left"
+
+[node name="KeybindContainer4" parent="MarginContainer/VBoxContainer/HBoxContainer/ControlsContainer" instance=ExtResource( 2 )]
+margin_top = 239.0
+margin_right = 608.0
+margin_bottom = 303.0
+action_name = "move_right"
+label_name = "Move Right"
+
+[node name="KeybindContainer5" parent="MarginContainer/VBoxContainer/HBoxContainer/ControlsContainer" instance=ExtResource( 2 )]
+margin_top = 307.0
+margin_right = 608.0
+margin_bottom = 371.0
+action_name = "normal_gun"
+label_name = "Gun"
+
+[node name="KeybindContainer6" parent="MarginContainer/VBoxContainer/HBoxContainer/ControlsContainer" instance=ExtResource( 2 )]
+margin_top = 375.0
+margin_right = 608.0
+margin_bottom = 439.0
+action_name = "splitter_gun"
+label_name = "Splitter Gun"
+
+[node name="KeybindContainer7" parent="MarginContainer/VBoxContainer/HBoxContainer/ControlsContainer" instance=ExtResource( 2 )]
+margin_top = 443.0
+margin_right = 608.0
+margin_bottom = 507.0
+action_name = "dash"
+label_name = "Dash"
+
+[node name="AudioContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 612.0
+margin_right = 1220.0
+margin_bottom = 507.0
+size_flags_horizontal = 3
+custom_constants/separation = 40
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioContainer"]
+margin_right = 608.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 1, 0.976471, 1 )
+text = "Audio"
+align = 1
+valign = 1
+
+[node name="MusicContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioContainer"]
+margin_top = 71.0
+margin_right = 608.0
+margin_bottom = 135.0
+
+[node name="Music_11" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioContainer/MusicContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="AudioSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioContainer/MusicContainer" instance=ExtResource( 4 )]
+margin_left = 68.0
+margin_top = 26.0
+margin_right = 608.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_styles/grabber_highlight = SubResource( 4 )
+custom_styles/grabber = SubResource( 5 )
+custom_styles/scroll = SubResource( 6 )
+custom_styles/grabber_pressed = SubResource( 7 )
+min_value = -50.0
+max_value = 0.0
+bus_name = "Music"
+
+[node name="SFXContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioContainer"]
+margin_top = 175.0
+margin_right = 608.0
+margin_bottom = 214.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioContainer/SFXContainer"]
+margin_right = 64.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0, 1, 0.0392157, 1 )
+text = "SFX"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioContainer/SFXContainer" instance=ExtResource( 4 )]
+margin_left = 68.0
+margin_top = 13.0
+margin_right = 608.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_styles/grabber_highlight = SubResource( 9 )
+custom_styles/grabber = SubResource( 10 )
+custom_styles/scroll = SubResource( 11 )
+custom_styles/grabber_pressed = SubResource( 12 )
+min_value = -50.0
+max_value = 0.0
+bus_name = "SFX"
+
+[node name="CloseButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -94.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = 94.0
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
