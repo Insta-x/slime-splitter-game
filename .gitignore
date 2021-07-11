@@ -1,7 +1,6 @@
 # Import cache
 .import/
-**/*.import
-icon.png.import
+*.import
 
 # Export presets
 export_presets.cfg
