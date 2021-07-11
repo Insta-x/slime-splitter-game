@@ -1,6 +1,5 @@
 # Import cache
 .import/
-*.import
 
 # Export presets
 export_presets.cfg
