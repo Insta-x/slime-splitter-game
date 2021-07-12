@@ -99,6 +99,7 @@ func _on_SlimeDetector_body_entered(_body: Node) -> void:
 
 func _on_SlimeLootDetector_area_entered(area : Area2D) -> void:
 	emit_signal("get_loot", area.size)
+	$CollectSFX.play()
 	area.queue_free()
 
 
