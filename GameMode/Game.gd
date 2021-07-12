@@ -9,6 +9,8 @@ onready var GameOverLabel : Label = $HUD/CenterContainer/GameOverLabel
 
 var score := 0 setget set_score
 var target_score := 500 setget set_target_score
+var kill_streak := 1 setget set_kill_streak
+var streak_progress := 3.0 setget set_streak_progress
 var avg_size := 1
 
 var game_done := false
@@ -18,6 +20,7 @@ var target_score_inc := 500
 
 
 func _ready() -> void:
+	Global.game = self
 	randomize()
 	$Camera2D.player = player
 	player.connect("get_loot", self, "add_score")
@@ -26,6 +29,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	self.streak_progress -= delta * int(not get_tree().paused)
 	self.time -= delta * int(not get_tree().paused)
 
 
@@ -75,7 +79,7 @@ func game_over() -> void:
 
 
 func add_score(size : int) -> void:
-	self.score += 1 << (size - 1)
+	self.score += (1 << (size - 1)) * kill_streak
 
 
 func _on_SpawnTimer_timeout() -> void:
@@ -106,6 +110,20 @@ func set_score(value : int) -> void:
 func set_target_score(value : int) -> void:
 	target_score = value
 	$HUD/TargetLabel.text = "Target\n" + str(target_score)
+
+
+func set_kill_streak(value : int) -> void:
+	if value > kill_streak:
+		streak_progress = 3.0
+	kill_streak = clamp(value, 1, 10)
+	$HUD/StreakLabel.text = str(kill_streak)
+
+
+func set_streak_progress(value : float) -> void:
+	if value <= 0:
+		self.kill_streak = 1
+	streak_progress = clamp(value, 0, 3)
+	$HUD/StreakProgress.value = value
 
 
 func set_time(value : float) -> void:

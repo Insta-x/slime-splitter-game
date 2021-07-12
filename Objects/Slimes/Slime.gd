@@ -53,6 +53,7 @@ func split() -> void:
 
 
 func die() -> void:
+	Global.game.kill_streak += 1
 	Global.world.slime_count -= 1
 	var loot = slime_loot.instance()
 	loot.size = size
