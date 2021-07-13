@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Fonts/gomarice_gogono_cocoa_mochi.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Menu/HighScoreLabel.gd" type="Script" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Assets/Menu/credits_button_hovered.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Menu/help_button_hovered.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Fonts/Liquidrom.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://Assets/Menu/settings_button.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Menu/settings_button_hovered.png" type="Texture" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -44,6 +46,11 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 32
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
 use_filter = true
 font_data = ExtResource( 1 )
 
@@ -149,12 +156,12 @@ __meta__ = {
 [node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 240.0
 margin_right = 1260.0
-margin_bottom = 556.0
+margin_bottom = 600.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer3"]
 margin_left = 566.0
 margin_right = 694.0
-margin_bottom = 316.0
+margin_bottom = 360.0
 custom_constants/separation = 10
 
 [node name="PlayButton" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer3/VBoxContainer"]
@@ -196,16 +203,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SettingButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer3/VBoxContainer"]
+[node name="SettingButton" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer3/VBoxContainer"]
 margin_top = 148.0
 margin_right = 128.0
-margin_bottom = 168.0
+margin_bottom = 212.0
+texture_normal = ExtResource( 17 )
+texture_hover = ExtResource( 18 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/CenterContainer3/VBoxContainer/SettingButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.972549, 0.133333, 1, 1 )
 text = "Settings"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CreditsButton" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer3/VBoxContainer"]
-margin_top = 178.0
+margin_top = 222.0
 margin_right = 128.0
-margin_bottom = 242.0
+margin_bottom = 286.0
 texture_normal = ExtResource( 12 )
 texture_hover = ExtResource( 14 )
 
@@ -223,9 +244,9 @@ __meta__ = {
 }
 
 [node name="ExitButton" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer3/VBoxContainer"]
-margin_top = 252.0
+margin_top = 296.0
 margin_right = 128.0
-margin_bottom = 316.0
+margin_bottom = 360.0
 texture_normal = ExtResource( 13 )
 texture_hover = ExtResource( 8 )
 
