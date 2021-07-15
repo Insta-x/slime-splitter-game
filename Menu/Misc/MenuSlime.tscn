@@ -5,6 +5,9 @@
 
 
 
+
+
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 40, 38 )

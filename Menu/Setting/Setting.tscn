@@ -12,6 +12,9 @@
 
 
 
+
+
+
 [sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 1 )
