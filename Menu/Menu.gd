@@ -23,6 +23,12 @@ func _ready() -> void:
 	# User settings
 	GlobalKeybind.load_key()
 	
+	# Randomize MenuSlime
+	randomize()
+	$MenuSlime.global_position = Vector2(rand_range(0, 1280), rand_range(0, 720))
+	$MenuDashSlime.global_position = Vector2(rand_range(0, 1280), rand_range(0, 720))
+	
+	# ScreenFader
 	ScreenFader.fade_in(1)
 	yield(ScreenFader, "animation_finished")
 
