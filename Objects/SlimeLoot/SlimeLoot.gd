@@ -7,7 +7,7 @@ var target : Node2D
 var velocity := Vector2(0, 0)
 var acceleration := 11.0
 var max_speed := 33.0
-
+var type : int setget set_type
 
 func _ready():
 	scale *= (size + 2)
@@ -23,6 +23,9 @@ func _physics_process(delta: float) -> void:
 	var direction := (target.global_position - global_position).normalized()
 	velocity = velocity.move_toward(max_speed * direction, acceleration * delta)
 
+func set_type(value : int):
+	type = value
+	$Sprite.frame = value
 
 func _on_PlayerDetector_body_entered(body: Node) -> void:
 	target = body

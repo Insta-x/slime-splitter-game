@@ -3,9 +3,10 @@ extends KinematicBody2D
 class_name Player
 
 
-signal get_loot(size)
+signal get_loot(size,type)
 signal dead
 signal shooting(duration, strength)
+signal dashed
 
 const gun_bullet := preload("res://Objects/Bullet/GunBullet.tscn")
 const splitter_bullet := preload("res://Objects/Bullet/SplitterBullet.tscn")
@@ -24,7 +25,7 @@ var dead := false
 var can_dash := true
 var dash_dir := Vector2.ZERO
 var dashing := false
-
+var dash_count = 0
 
 func _ready() -> void:
 	Global.player = self
@@ -60,7 +61,9 @@ func _physics_process(delta : float) -> void:
 	if dashing:
 		move_and_slide(direction * dash_speed)
 		return
-	if Input.is_action_pressed("dash") and can_dash:
+	if Input.is_action_pressed("dash") and can_dash and dash_count >= 1:
+		dash_count -= 1
+		emit_signal("dashed")
 		can_dash = false
 		dashing = true
 		$DashCD.start()
@@ -98,7 +101,7 @@ func _on_SlimeDetector_body_entered(_body: Node) -> void:
 
 
 func _on_SlimeLootDetector_area_entered(area : Area2D) -> void:
-	emit_signal("get_loot", area.size)
+	emit_signal("get_loot", area.size, area.type)
 	area.queue_free()
 
 

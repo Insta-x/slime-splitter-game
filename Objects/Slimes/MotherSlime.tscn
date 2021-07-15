@@ -154,14 +154,14 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="StunnedSprite" type="AnimatedSprite" parent="."]
 visible = false
 position = Vector2( 0, -32 )
 frames = SubResource( 29 )
-frame = 2
+frame = 10
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -15,7 +15,7 @@ var game_done := false
 
 var time := 60.0 setget set_time
 var target_score_inc := 500
-
+var LootContainer = [0,0,0]
 
 func _ready() -> void:
 	randomize()
@@ -23,6 +23,8 @@ func _ready() -> void:
 	player.connect("get_loot", self, "add_score")
 	player.connect("shooting", $Camera2D, "shake")
 	player.connect("dead", self, "game_over")
+	player.connect("dashed",self,"player_dashed")
+
 
 
 func _process(delta: float) -> void:
@@ -74,8 +76,16 @@ func game_over() -> void:
 	$GameOverAudio.play()
 
 
-func add_score(size : int) -> void:
+func add_score(size : int, type : int) -> void:
 	self.score += 1 << (size - 1)
+	LootContainer[type] += size
+	player.dash_count =  LootContainer[2]
+	$HUD/DashLabel.text = "Dash :\n" + str(LootContainer[2])
+
+
+func  player_dashed() -> void:
+	LootContainer[0] -= 1
+	$HUD/DashLabel.text = "Dash :\n" + str(LootContainer[2])
 
 
 func _on_SpawnTimer_timeout() -> void:
@@ -113,3 +123,5 @@ func set_time(value : float) -> void:
 	if time <= 0.0 and not game_done:
 		player.died()
 	$HUD/TimeLabel.text = str(max(0, int(ceil(time))))
+
+

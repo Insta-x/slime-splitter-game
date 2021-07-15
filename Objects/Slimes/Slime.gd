@@ -57,7 +57,7 @@ func die() -> void:
 	var loot = slime_loot.instance()
 	loot.size = size
 	loot.position = global_position
-	loot.get_node("Sprite").frame = type
+	loot.type = type
 	Global.world.call_deferred("add_child", loot)
 	$DeadSlime.play()
 	dead = true
