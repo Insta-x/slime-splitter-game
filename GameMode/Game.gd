@@ -79,14 +79,13 @@ func game_over() -> void:
 func add_score(size : int, type : int) -> void:
 	self.score += 1 << (size - 1)
 	LootContainer[type] += size
-	player.dash_count =  LootContainer[0]
-	$HUD/DashLabel.text = "Dash :\n" + str(LootContainer[0])
+	player.dash_count =  LootContainer[2]
+	$HUD/DashLabel.text = "Dash :\n" + str(LootContainer[2])
 
 
 func  player_dashed() -> void:
-	print("wuw")
-	LootContainer[0] -= 1
-	$HUD/DashLabel.text = "Dash :\n" + str(LootContainer[0])
+	LootContainer[2] -= 1
+	$HUD/DashLabel.text = "Dash :\n" + str(LootContainer[2])
 
 
 func _on_SpawnTimer_timeout() -> void:
