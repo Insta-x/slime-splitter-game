@@ -19,6 +19,8 @@
 [ext_resource path="res://Assets/Menu/settings_button.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Menu/settings_button_hovered.png" type="Texture" id=18]
 
+
+
 [sub_resource type="DynamicFont" id=1]
 size = 100
 outline_size = 4

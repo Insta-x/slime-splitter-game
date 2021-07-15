@@ -4,6 +4,8 @@
 [ext_resource path="res://Menu/Setting/KeybindContainer.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/gomarice_gogono_cocoa_mochi.ttf" type="DynamicFontData" id=3]
 
+
+
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
 

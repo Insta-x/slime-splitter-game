@@ -3,6 +3,8 @@
 [ext_resource path="res://Menu/Misc/MenuSlime.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/NormalSlime-test.png" type="Texture" id=2]
 
+
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 40, 38 )

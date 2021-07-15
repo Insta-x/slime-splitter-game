@@ -10,6 +10,8 @@
 [ext_resource path="res://Assets/Art/GunBullet.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Menu/hscroll.png" type="Texture" id=12]
 
+
+
 [sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 1 )
