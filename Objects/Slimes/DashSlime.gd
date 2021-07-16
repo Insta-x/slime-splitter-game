@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	if can_dash and stun_time_left <= 0:
 		can_dash = false
 		readying_dash = true
-		dash_target = Global.player.global_position
+		dash_target = Global.player.global_position + Vector2.RIGHT.rotated(randf() * PI * 2) * (randi() % 100)
 		$AnimatedSprite.play("ReadyDash")
 		$AnimatedSprite.flip_h = (dash_target - global_position).x < 0
 	velocity = move_and_slide(velocity)
@@ -45,6 +45,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
 	if readying_dash:
 		DashTimer.start(dash_cooldown)
 		var direction := (dash_target - global_position).normalized()
+		
 		velocity = direction * movespeed * 6
 		readying_dash = false
 		$AnimatedSprite.play("Dash")

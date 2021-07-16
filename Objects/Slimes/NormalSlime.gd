@@ -5,6 +5,7 @@ class_name NormalSlime
 
 var max_speed : float
 var accel : float
+var target : Vector2
 
 
 func _ready() -> void:
@@ -14,8 +15,12 @@ func _ready() -> void:
 func _physics_process(delta : float) -> void:
 	if dead:
 		return
+	if target.distance_to(position) < 20:
+		target = Global.player.position
+	if target.distance_to(Global.player.position) > 200:
+		target = Global.player.position + Vector2.RIGHT.rotated(randf() * PI * 2) * (randi() % 100)
 	if stun_time_left <= 0.0:
-		var direction : Vector2 = (Global.player.global_position - global_position).normalized()
+		var direction : Vector2 = (target - global_position).normalized()
 		velocity = velocity.move_toward(direction * max_speed, accel * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
