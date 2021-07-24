@@ -32,9 +32,9 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if game_done:
 		if event.is_action("Exit") and event.is_pressed():
-			get_tree().change_scene("res://Menu/Menu.tscn")
+			exit_to_menu()
 		if event.is_action("restart") and event.is_pressed():
-			get_tree().change_scene("res://GameMode/Game.tscn")
+			restart()
 		get_tree().set_input_as_handled()
 	else:
 		if event.is_action("pause") and event.is_pressed():
@@ -44,6 +44,14 @@ func _input(event: InputEvent) -> void:
 				AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -30)
 			else:
 				AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 0)
+
+
+func exit_to_menu() -> void:
+	get_tree().change_scene("res://Menu/Menu.tscn")
+
+
+func restart() -> void:
+	get_tree().change_scene("res://GameMode/Game.tscn")
 
 
 func game_over() -> void:
