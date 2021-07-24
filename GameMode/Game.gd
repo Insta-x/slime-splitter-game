@@ -38,20 +38,28 @@ func _input(event: InputEvent) -> void:
 		get_tree().set_input_as_handled()
 	else:
 		if event.is_action("pause") and event.is_pressed():
-			get_tree().paused = not get_tree().paused
-			$HUD/CenterContainer/PauseLabel.visible = get_tree().paused
-			if get_tree().paused:
-				AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -30)
-			else:
-				AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 0)
+			pause(not get_tree().paused)
 
 
-func exit_to_menu() -> void:
-	get_tree().change_scene("res://Menu/Menu.tscn")
+func pause(value : bool = true) -> void:
+	get_tree().paused = value
+	$HUD/PausePanel.visible = get_tree().paused
+	
+	# Audio Damp
+	if get_tree().paused:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -30)
+	else:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 0)
 
 
 func restart() -> void:
+	pause(false)
 	get_tree().change_scene("res://GameMode/Game.tscn")
+
+
+func exit_to_menu() -> void:
+	pause(false)
+	get_tree().change_scene("res://Menu/Menu.tscn")
 
 
 func game_over() -> void:
