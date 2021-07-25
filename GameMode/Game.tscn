@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://GameMode/Game.gd" type="Script" id=1]
 [ext_resource path="res://Objects/World.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Fonts/gomarice_gogono_cocoa_mochi.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/Audios/GameMusic.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Audios/Died_sfx.wav" type="AudioStream" id=6]
+[ext_resource path="res://Objects/PowerUp/PowerUpSelection.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -24,6 +25,10 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 48
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 30
 font_data = ExtResource( 4 )
 
 [node name="Game" type="Node"]
@@ -82,7 +87,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -6.23627
 margin_top = 0.8909
-margin_right = -6.23627
+margin_right = -6.23633
 margin_bottom = 0.890869
 mouse_filter = 2
 __meta__ = {
@@ -114,6 +119,21 @@ custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.968627, 1, 0, 1 )
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PowerUpSelection" parent="HUD" instance=ExtResource( 7 )]
+
+[node name="PowerUpLabel" type="Label" parent="HUD"]
+visible = false
+margin_left = 1100.0
+margin_top = 30.0
+margin_right = 1250.0
+margin_bottom = 61.0
+custom_fonts/font = SubResource( 6 )
+text = "Power Up :"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

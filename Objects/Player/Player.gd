@@ -25,6 +25,8 @@ var can_dash := true
 var dash_dir := Vector2.ZERO
 var dashing := false
 
+var damage_buff= 0
+var attack_speed_buff = 0
 
 func _ready() -> void:
 	Global.player = self
@@ -42,10 +44,11 @@ func _physics_process(delta : float) -> void:
 		bullet.global_position = global_position
 		bullet.global_rotation = global_rotation
 		get_parent().add_child(bullet)
+		bullet.bullet_type += damage_buff
 		gun_cd = true
 		$GunShot.play()
 		emit_signal("shooting", 0.15, 6)
-		$GunCD.start(0.3)
+		$GunCD.start(0.3/(1 + attack_speed_buff))
 	if shooting_split and not split_cd:
 		var bullet := splitter_bullet.instance()
 		bullet.direction = (get_global_mouse_position() - global_position).normalized()
@@ -54,7 +57,7 @@ func _physics_process(delta : float) -> void:
 		split_cd = true
 		$SplitterShot.play()
 		emit_signal("shooting", 0.07, 3)
-		$SplitCD.start(0.2)
+		$SplitCD.start(0.2/(1 + attack_speed_buff))
 	
 	# Movement
 	if dashing:
@@ -108,3 +111,16 @@ func _on_DashStop_timeout():
 
 func _on_DashCD_timeout():
 	can_dash = true
+
+
+func power_up(type : String ):
+	if type == "null":
+		attack_speed_buff = 0
+		damage_buff = 0
+	else :
+		if type == "Atk Speed":
+			attack_speed_buff = 1
+			damage_buff = 0
+		if type == "Damage":
+			damage_buff = 1
+			attack_speed_buff = 0

@@ -73,11 +73,11 @@ func _on_AnimatedSprite_animation_finished() -> void:
 
 
 func _on_BulletDetector_body_entered(body : Bullet) -> void:
-	self.health -= body.bullet_type
 	if body.bullet_type == 0:
 		split()
 		if size == 1:
 			return
+	self.health -= body.bullet_type
 	body._hit()
 
 

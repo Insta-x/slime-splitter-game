@@ -6,6 +6,7 @@ class_name Game
 onready var world : Node2D = $World
 onready var player : Player = $World/Player
 onready var GameOverLabel : Label = $HUD/CenterContainer/GameOverLabel
+onready var PowerUpSelection = $HUD/PowerUpSelection
 
 var score := 0 setget set_score
 var target_score := 500 setget set_target_score
@@ -15,6 +16,8 @@ var game_done := false
 
 var time := 60.0 setget set_time
 var target_score_inc := 500
+var duration := 0.0
+var power_up_type = "null"
 
 
 func _ready() -> void:
@@ -23,10 +26,20 @@ func _ready() -> void:
 	player.connect("get_loot", self, "add_score")
 	player.connect("shooting", $Camera2D, "shake")
 	player.connect("dead", self, "game_over")
+	PowerUpSelection.connect("power_up",player , "power_up")
+	PowerUpSelection.connect("power_up", self, "power_up_label")
 
 
 func _process(delta: float) -> void:
 	self.time -= delta * int(not get_tree().paused)
+	if power_up_type != "null":
+		if duration <= 0.0:
+			$HUD/PowerUpLabel.visible = false
+			power_up_type = "null"
+			player.power_up(power_up_type)
+		elif duration > 0:
+			self.duration -= delta * int(not get_tree().paused)
+			$HUD/PowerUpLabel.text = "Power Up : \n" + power_up_type + "\n" +str(max(0, int(ceil(duration))))
 
 
 func _input(event: InputEvent) -> void:
@@ -113,3 +126,10 @@ func set_time(value : float) -> void:
 	if time <= 0.0 and not game_done:
 		player.died()
 	$HUD/TimeLabel.text = str(max(0, int(ceil(time))))
+
+
+
+func power_up_label(type : String):
+	$HUD/PowerUpLabel.visible =  true
+	power_up_type = type
+	duration = 30.0
