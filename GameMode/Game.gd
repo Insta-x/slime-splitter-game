@@ -5,7 +5,8 @@ class_name Game
 
 onready var world : Node2D = $World
 onready var player : Player = $World/Player
-onready var GameOverLabel : Label = $HUD/CenterContainer/GameOverLabel
+onready var PausePanel : NinePatchRect = $HUD/PausePanel
+onready var GameOverPanel : NinePatchRect = $HUD/GameOverPanel
 
 var score := 0 setget set_score
 var target_score := 500 setget set_target_score
@@ -32,10 +33,9 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if game_done:
 		if event.is_action("Exit") and event.is_pressed():
-			exit_to_menu()
+			pass
 		if event.is_action("restart") and event.is_pressed():
-			restart()
-		get_tree().set_input_as_handled()
+			pass
 	else:
 		if event.is_action("pause") and event.is_pressed():
 			pause(not get_tree().paused)
@@ -43,7 +43,7 @@ func _input(event: InputEvent) -> void:
 
 func pause(value : bool = true) -> void:
 	get_tree().paused = value
-	$HUD/PausePanel.visible = get_tree().paused
+	PausePanel.visible = get_tree().paused
 	
 	# Audio Damp
 	if get_tree().paused:
@@ -78,14 +78,10 @@ func game_over() -> void:
 		savef.store_64(score)
 	savef.close()
 	
-	if score > high_score:
-		GameOverLabel.text = "High Score!\n"
-	else:
-		GameOverLabel.text = "Score\n"
-	GameOverLabel.text += str(score) + "\nPress Esc to exit\nPress R to restart"
+	GameOverPanel.show()
+	GameOverPanel.score(score)
 	
 	OS.delay_msec(500)
-	GameOverLabel.visible = true
 	$Music.stop()
 	$GameOverAudio.play()
 
