@@ -31,12 +31,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if game_done:
-		if event.is_action("Exit") and event.is_pressed():
-			pass
-		if event.is_action("restart") and event.is_pressed():
-			pass
-	else:
+	if not game_done:
 		if event.is_action("pause") and event.is_pressed():
 			pause(not get_tree().paused)
 
@@ -66,6 +61,8 @@ func game_over() -> void:
 	if game_done:
 		return
 	game_done = true
+	
+	# Save Score
 	var high_score := 0
 	var loadf := File.new()
 	if loadf.file_exists("user://asd.sav"):
@@ -78,9 +75,11 @@ func game_over() -> void:
 		savef.store_64(score)
 	savef.close()
 	
+	# GameOverPanel
 	GameOverPanel.show()
 	GameOverPanel.score(score)
 	
+	# Misc
 	OS.delay_msec(500)
 	$Music.stop()
 	$GameOverAudio.play()
