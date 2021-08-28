@@ -5,7 +5,8 @@ class_name Game
 
 onready var world : Node2D = $World
 onready var player : Player = $World/Player
-onready var GameOverLabel : Label = $HUD/CenterContainer/GameOverLabel
+onready var PausePanel : NinePatchRect = $HUD/PausePanel
+onready var GameOverPanel : NinePatchRect = $HUD/GameOverPanel
 
 var score := 0 setget set_score
 var target_score := 500 setget set_target_score
@@ -30,26 +31,38 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if game_done:
-		if event.is_action("Exit") and event.is_pressed():
-			get_tree().change_scene("res://Menu/Menu.tscn")
-		if event.is_action("restart") and event.is_pressed():
-			get_tree().change_scene("res://GameMode/Game.tscn")
-		get_tree().set_input_as_handled()
-	else:
+	if not game_done:
 		if event.is_action("pause") and event.is_pressed():
-			get_tree().paused = not get_tree().paused
-			$HUD/CenterContainer/PauseLabel.visible = get_tree().paused
-			if get_tree().paused:
-				AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -30)
-			else:
-				AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 0)
+			pause(not get_tree().paused)
+
+
+func pause(value : bool = true) -> void:
+	get_tree().paused = value
+	PausePanel.visible = get_tree().paused
+	
+	# Audio Damp
+	if get_tree().paused:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -30)
+	else:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 0)
+
+
+func restart() -> void:
+	pause(false)
+	get_tree().change_scene("res://GameMode/Game.tscn")
+
+
+func exit_to_menu() -> void:
+	pause(false)
+	get_tree().change_scene("res://Menu/Menu.tscn")
 
 
 func game_over() -> void:
 	if game_done:
 		return
 	game_done = true
+	
+	# Save Score
 	var high_score := 0
 	var loadf := File.new()
 	if loadf.file_exists("user://asd.sav"):
@@ -62,14 +75,12 @@ func game_over() -> void:
 		savef.store_64(score)
 	savef.close()
 	
-	if score > high_score:
-		GameOverLabel.text = "High Score!\n"
-	else:
-		GameOverLabel.text = "Score\n"
-	GameOverLabel.text += str(score) + "\nPress Esc to exit\nPress R to restart"
+	# GameOverPanel
+	GameOverPanel.show()
+	GameOverPanel.score(score)
 	
+	# Misc
 	OS.delay_msec(500)
-	GameOverLabel.visible = true
 	$Music.stop()
 	$GameOverAudio.play()
 

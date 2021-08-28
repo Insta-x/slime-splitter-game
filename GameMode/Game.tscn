@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://GameMode/Game.gd" type="Script" id=1]
 [ext_resource path="res://Objects/World.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Assets/Fonts/gomarice_gogono_cocoa_mochi.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/Audios/GameMusic.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Audios/Died_sfx.wav" type="AudioStream" id=6]
+[ext_resource path="res://UI/PausePanel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI/GameOverPanel.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -19,10 +21,6 @@ font_data = ExtResource( 4 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 48
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=5]
 size = 48
 font_data = ExtResource( 4 )
 
@@ -77,40 +75,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PausePanel" parent="HUD" instance=ExtResource( 7 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -130.0
+margin_top = -130.0
+margin_right = 130.0
+margin_bottom = 130.0
+
+[node name="GameOverPanel" parent="HUD" instance=ExtResource( 8 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -150.0
+margin_right = 150.0
+margin_bottom = 150.0
+
 [node name="CenterContainer" type="CenterContainer" parent="HUD"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -6.23627
-margin_top = 0.8909
-margin_right = -6.23627
-margin_bottom = 0.890869
+margin_bottom = -6.10352e-05
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseLabel" type="Label" parent="HUD/CenterContainer"]
-visible = false
-margin_left = 573.0
-margin_top = 335.0
-margin_right = 707.0
-margin_bottom = 384.0
-custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0.968627, 1, 0, 1 )
-text = "Pause"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="GameOverLabel" type="Label" parent="HUD/CenterContainer"]
-visible = false
 margin_left = 640.0
 margin_top = 335.0
 margin_right = 640.0
 margin_bottom = 384.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.968627, 1, 0, 1 )
 align = 1
 valign = 1
@@ -131,4 +132,9 @@ bus = "Music"
 [node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 bus = "SFX"
+[connection signal="continue_pressed" from="HUD/PausePanel" to="." method="pause" binds= [ false ]]
+[connection signal="exit_pressed" from="HUD/PausePanel" to="." method="exit_to_menu"]
+[connection signal="restart_pressed" from="HUD/PausePanel" to="." method="restart"]
+[connection signal="exit_pressed" from="HUD/GameOverPanel" to="." method="exit_to_menu"]
+[connection signal="restart_pressed" from="HUD/GameOverPanel" to="." method="restart"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
